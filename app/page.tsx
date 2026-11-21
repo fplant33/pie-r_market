@@ -1,7 +1,7 @@
  "use client";
 import {FormEvent,useState} from "react";
 import Link from "next/link";
-import {supabase} from "../../lib/supabase";
+import {supabase} from "../lib/supabase";
 export default function Login(){
  const [email,setEmail]=useState(""); const [message,setMessage]=useState(""); const [error,setError]=useState(""); const [busy,setBusy]=useState(false);
  async function emailLogin(e:FormEvent){e.preventDefault();setBusy(true);setError("");setMessage("");const {error}=await supabase.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.origin}});setBusy(false);if(error)setError(error.message);else setMessage("ส่งลิงก์เข้าสู่ระบบไปยังอีเมลแล้ว กรุณาตรวจสอบกล่องจดหมาย");}
